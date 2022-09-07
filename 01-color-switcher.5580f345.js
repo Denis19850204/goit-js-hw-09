@@ -1,0 +1,2 @@
+const t=document.querySelector("button[data-start]"),e=document.querySelector("button[data-stop]"),d=document.body;let o=null;t.addEventListener("click",(function(){t.disabled=!0,e.disabled=!1,o=setInterval((()=>{d.style.backgroundColor=`#${Math.floor(16777215*Math.random()).toString(16)}`}),1e3)})),e.addEventListener("click",(function(){clearInterval(o),t.disabled=!1,e.disabled=!0})),console.log("privet"),e.disabled=!0;
+//# sourceMappingURL=01-color-switcher.5580f345.js.map
