@@ -14,6 +14,7 @@ btn.addEventListener('click', onBtnClick);
 const today = new Date();
 btn.disabled = true;
 
+
 function onBtnClick() {
   timer.start();
 }
@@ -25,12 +26,15 @@ const options = {
   minuteIncrement: 1,
   onClose(selectedDates) {
     validDate(selectedDates[0]);
+    
   },
 };
 
 flatpickr('#datetime-picker', options);
 
 function validDate(date) {
+  btn.disabled = true;
+  
   if (date <= today) {
     setTimeout(() => {
       Notiflix.Notify.warning('Please choose a date in the future');
@@ -50,10 +54,16 @@ const timer = {
     const targetDate = new Date(input.value);
     this.isActive = true;
 
-    setInterval(() => {
+    const timerId=setInterval(() => {
       const currentDate = Date.now();
       const deltaTime = targetDate - currentDate;
       const time = convertMs(deltaTime);
+
+      
+      if (deltaTime <= 1000) {
+        clearInterval(timerId)
+      }
+      
 
       updateDisplay(time);
     }, 1000);
